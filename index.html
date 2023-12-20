@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>WebHID Telephony Demo</title>
-	</head>
-	<body>
+
+<head>
+	<title>WebHID Telephony Demo</title>
+</head>
+
+<body>
 	Mode:
 	<select id="mode" onChange="changeMode()">
 		<option value="auto">Auto Detect (ChromeOS, Linux & Mac only)</option>
@@ -13,12 +14,12 @@
 		<option value="poly">Poly</option>
 		<option value="sennheiser">Sennheiser</option>
 	</select>
-	<br/>
+	<br />
 	<div id="vendorFilter">
-		Vendor Filter: <input type="text" id="vendor" placeholder="0x0123"/> (Optional)
-		<br/>
+		Vendor Filter: <input type="text" id="vendor" placeholder="0x0123" /> (Optional)
+		<br />
 	</div>
-	<button type="button" onclick="requestDevice()">Connect</button><br/>
+	<button type="button" onclick="requestDevice()">Connect</button><br />
 	<div style="display: inline-block">
 		<div style="float: left">
 			<h3>Outputs (host → device)</h3>
@@ -46,11 +47,11 @@
 		</div>
 		<div style="float: right; border: 1px black dashed; padding: 5px; margin-left: 15px">
 			<h3>HID Report Details</h3>
-			<b>Input Reports:</b><br/> <span id="dInputReportDetails"></span><br/>
-			<b>Output Reports:</b><br/> <span id="dOutputReportDetails"></span><br/>
+			<b>Input Reports:</b><br /> <span id="dInputReportDetails"></span><br />
+			<b>Output Reports:</b><br /> <span id="dOutputReportDetails"></span><br />
 		</div>
 	</div>
-	<br/>
+	<br />
 	<div id="mylog" style="display: inline-block">
 		<h3>Log</h3>
 	</div>
@@ -64,61 +65,61 @@
 			"jabra": {
 				"vendorId": 0x0b0e,
 				"inputs": {
-					"telephony-hook":{ "reportId": 2, "reportPos": 0},
-					"telephony-mute":{ "reportId": 2, "reportPos": 2},
-					"telephony-flash":{ "reportId": 2, "reportPos": 3},
-					"telephony-redial":{ "reportId": 2, "reportPos": 4},
-					"telephony-button":{ "reportId": 2, "reportPos": 6},
+					"telephony-hook": {"reportId": 2, "reportPos": 0},
+					"telephony-mute": {"reportId": 2, "reportPos": 2},
+					"telephony-flash": {"reportId": 2, "reportPos": 3},
+					"telephony-redial": {"reportId": 2, "reportPos": 4},
+					"telephony-button": {"reportId": 2, "reportPos": 6},
 				},
 				"outputs": {
-					"led-offhook":{ "reportId": 2, "reportPos": 0},
-					"led-mute":{ "reportId": 2, "reportPos": 1},
-					"led-ring":{ "reportId": 2, "reportPos": 2},
-					"led-hold":{ "reportId": 2, "reportPos": 3},
-					"led-microphone":{ "reportId": 2, "reportPos": 4},
-					"telephony-ringer":{ "reportId": 2, "reportPos": 5},
+					"led-offhook": {"reportId": 2, "reportPos": 0},
+					"led-mute": {"reportId": 2, "reportPos": 1},
+					"led-ring": {"reportId": 2, "reportPos": 2},
+					"led-hold": {"reportId": 2, "reportPos": 3},
+					"led-microphone": {"reportId": 2, "reportPos": 4},
+					"telephony-ringer": {"reportId": 2, "reportPos": 5},
 				}
 			},
 			"poly": {
 				"vendorId": 0x047f,
 				"inputs": {
-					"telephony-hook":{ "reportId": 1, "reportPos": 0},
-					"telephony-flash":{ "reportId": 1, "reportPos": 2},
-					"telephony-redial":{ "reportId": 1, "reportPos": 3},
-					"telephony-mute":{ "reportId": 1, "reportPos": 1},
-					"telephony-drop":{ "reportId": 3, "reportPos": 4},
-					"telephony-button":{ "reportId": 1, "reportPos": 4},
-					"buttons-one":{ "reportId": 1, "reportPos": 5},
+					"telephony-hook": {"reportId": 1, "reportPos": 0},
+					"telephony-flash": {"reportId": 1, "reportPos": 2},
+					"telephony-redial": {"reportId": 1, "reportPos": 3},
+					"telephony-mute": {"reportId": 1, "reportPos": 1},
+					"telephony-drop": {"reportId": 3, "reportPos": 4},
+					"telephony-button": {"reportId": 1, "reportPos": 4},
+					"buttons-one": {"reportId": 1, "reportPos": 5},
 				},
 				"outputs": {
-					"telephony-ringer":{ "reportId": 3, "reportPos": 0},
-					"led-offhook":{ "reportId": 4, "reportPos": 0},
-					"led-microphone":{ "reportId": 3, "reportPos": 2},
-					"led-ring":{ "reportId": 1, "reportPos": 0},
-					"led-mute":{ "reportId": 3, "reportPos": 0},
-					"led-online":{ "reportId": 3, "reportPos": 5},
-					"led-hold":{ "reportId": 5, "reportPos": 0},
+					"telephony-ringer": {"reportId": 3, "reportPos": 0},
+					"led-offhook": {"reportId": 4, "reportPos": 0},
+					"led-microphone": {"reportId": 3, "reportPos": 2},
+					"led-ring": {"reportId": 1, "reportPos": 0},
+					"led-mute": {"reportId": 3, "reportPos": 0},
+					"led-online": {"reportId": 3, "reportPos": 5},
+					"led-hold": {"reportId": 5, "reportPos": 0},
 				}
 			},
 			"sennheiser": {
 				"vendorId": 0x1395,
 				"inputs": {
-					"telephony-hook":{ "reportId": 3, "reportPos": 0},
-					"telephony-flash":{ "reportId": 3, "reportPos": 1},
-					"telephony-redial":{ "reportId": 3, "reportPos": 2},
-					"telephony-mute":{ "reportId": 3, "reportPos": 3},
-					"telephony-drop":{ "reportId": 3, "reportPos": 4},
-					"telephony-button":{ "reportId": 3, "reportPos": 5},
-					"buttons-one":{ "reportId": 3, "reportPos": 6},
+					"telephony-hook": {"reportId": 3, "reportPos": 0},
+					"telephony-flash": {"reportId": 3, "reportPos": 1},
+					"telephony-redial": {"reportId": 3, "reportPos": 2},
+					"telephony-mute": {"reportId": 3, "reportPos": 3},
+					"telephony-drop": {"reportId": 3, "reportPos": 4},
+					"telephony-button": {"reportId": 3, "reportPos": 5},
+					"buttons-one": {"reportId": 3, "reportPos": 6},
 				},
 				"outputs": {
-					"telephony-ringer":{ "reportId": 3, "reportPos": 0},
-					"led-offhook":{ "reportId": 3, "reportPos": 1},
-					"led-microphone":{ "reportId": 3, "reportPos": 2},
-					"led-ring":{ "reportId": 3, "reportPos": 3},
-					"led-mute":{ "reportId": 3, "reportPos": 4},
-					"led-online":{ "reportId": 3, "reportPos": 5},
-					"led-hold":{ "reportId": 3, "reportPos": 6},
+					"telephony-ringer": {"reportId": 3, "reportPos": 0},
+					"led-offhook": {"reportId": 3, "reportPos": 1},
+					"led-microphone": {"reportId": 3, "reportPos": 2},
+					"led-ring": {"reportId": 3, "reportPos": 3},
+					"led-mute": {"reportId": 3, "reportPos": 4},
+					"led-online": {"reportId": 3, "reportPos": 5},
+					"led-hold": {"reportId": 3, "reportPos": 6},
 				}
 			},
 		}
@@ -161,7 +162,7 @@
 		function hexByte(d) {
 			var hex = Number(d).toString(16);
 			while (hex.length < 2)
-			hex = "0" + hex;
+				hex = "0" + hex;
 			return hex;
 		}
 
@@ -247,20 +248,20 @@
 			// TODO: Only add something to the buffer for the particular output report it'll go to
 			let buf = '';
 			if (ledOffHook)
-			buf += ' off-hook-led';
+				buf += ' off-hook-led';
 			if (ledMute)
-			buf += ' mute-led';
+				buf += ' mute-led';
 			if (ledRing)
-			buf += ' ring-led';
+				buf += ' ring-led';
 			if (ledHold)
-			buf += ' hold-led';
+				buf += ' hold-led';
 			if (ledMicrophone)
-			buf += ' microphone-led';
+				buf += ' microphone-led';
 			if (ringer)
-			buf += ' ringer';
+				buf += ' ringer';
 
 			for (k in bits) {
-				logappend('OUTPUT ('+k+'):' + buf);
+				logappend('OUTPUT (' + k + '):' + buf);
 				// Send the report to the device.
 				device.sendReport(k, new Uint8Array([bits[k], 0x00]));
 			}
@@ -275,55 +276,55 @@
 				if (inputs[k].reportId == reportId) {
 					handle = true;
 					value = reportData.getUint8(0) & (1 << inputs[k].reportPos);
-					switch(k) {
-					case 'telephony-hook':
-						hookSwitch = value;
-						break;
-					case 'telephony-mute':
-						phoneMute = value;
-						break;
-					case 'telephony-flash':
-						flash = value;
-						break;
-					case 'telephony-redial':
-						redial = value;
-						break;
+					switch (k) {
+						case 'telephony-hook':
+							hookSwitch = value;
+							break;
+						case 'telephony-mute':
+							phoneMute = value;
+							break;
+						case 'telephony-flash':
+							flash = value;
+							break;
+						case 'telephony-redial':
+							redial = value;
+							break;
 					}
 				}
 			}
 			let buf = '';
 			if (handle) {
-			    document.getElementById('hook-switch').checked = hookSwitch;
-			    document.getElementById('phone-mute').checked = phoneMute;
-			    document.getElementById('flash').checked = flash;
-			    document.getElementById('redial').checked = redial;
+				document.getElementById('hook-switch').checked = hookSwitch;
+				document.getElementById('phone-mute').checked = phoneMute;
+				document.getElementById('flash').checked = flash;
+				document.getElementById('redial').checked = redial;
 
-			    if (hookSwitch) {
+				if (hookSwitch) {
 					buf += ' off-hook';
 					if (!document.getElementById('led-off-hook').checked) {
 						pickUp();
 					}
-			    }
-			    else {
-				    buf += ' on-hook';
-				    if (document.getElementById('led-off-hook').checked) {
+				}
+				else {
+					buf += ' on-hook';
+					if (document.getElementById('led-off-hook').checked) {
 						hangUp();
 					}
-			    }
-			    if (phoneMute) {
+				}
+				if (phoneMute) {
 					buf += ' mute';
 					document.getElementById('led-mute').checked = !document.getElementById('led-mute').checked;
 					document.getElementById('led-microphone').checked = !document.getElementById('led-microphone').checked;
 					sendOutputReport();
-			    }
-			    if (flash)
-			        buf += ' flash';
-			    if (redial)
-				    buf += ' redial';
+				}
+				if (flash)
+					buf += ' flash';
+				if (redial)
+					buf += ' redial';
 				logappend('INPUT ' + hexByte(reportId) + ': ' + buf);
 			} else {
-			    for (let i = 0; i < reportData.byteLength; ++i)
-				    buf += ' ' + hexByte(reportData.getUint8(i));
+				for (let i = 0; i < reportData.byteLength; ++i)
+					buf += ' ' + hexByte(reportData.getUint8(i));
 				logappend('INPUT (RAW)' + hexByte(reportId) + ': ' + buf);
 			}
 		}
@@ -342,11 +343,24 @@
 			} else if (mode != "auto") {
 				filters.push({vendorId: modes[mode].vendorId});
 			}
-			device = await navigator.hid.requestDevice({filters: filters});
-			if (!device) {
+
+
+			navigator.hid.addEventListener("connect", (ev) => {
+				// You have the device now. You can open it, subscribe to reports, 
+				//   or whatever your application requires
+				console.log("Connected... openning");
+
+				ev.device.open();
+			});
+
+			let devices = await navigator.hid.requestDevice({filters: filters});
+			if (!devices) {
 				logappend('chooser dismissed without a selection');
 				return;
 			}
+			device = devices.pop();
+			console.log(device);
+			<!-- return; -->
 
 			// Open the device.
 			await device.open();
@@ -391,19 +405,19 @@
 			dOutputReportDetails = document.getElementById('dOutputReportDetails');
 			buf = "";
 			for (k in inputs) {
-				buf +=  "\"" + k + "\":{" + " \"reportId\": " + inputs[k].reportId + ", \"reportPos\": " + inputs[k].reportPos + "},<br/>";
+				buf += "\"" + k + "\":{" + " \"reportId\": " + inputs[k].reportId + ", \"reportPos\": " + inputs[k].reportPos + "},<br/>";
 			}
 			dInputReportDetails.innerHTML = buf;
 			buf = "";
 			for (k in outputs) {
-				buf +=  "\"" + k + "\":{" + " \"reportId\": " + outputs[k].reportId + ", \"reportPos\": " + outputs[k].reportPos + "},<br/>";
+				buf += "\"" + k + "\":{" + " \"reportId\": " + outputs[k].reportId + ", \"reportPos\": " + outputs[k].reportPos + "},<br/>";
 			}
 			dOutputReportDetails.innerHTML = buf;
 		}
 
 		function enumerateReports() {
 			var telephonyCollection = null;
-			for(x = 0; x < device.collections.length; x++) {
+			for (x = 0; x < device.collections.length; x++) {
 				if (device.collections[x].usagePage == 0x0b) {
 					telephonyCollection = device.collections[x];
 					break;
@@ -450,6 +464,7 @@
 			}
 			updateDetailDisplay();
 		}
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
