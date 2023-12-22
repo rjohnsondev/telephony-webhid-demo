@@ -322,10 +322,11 @@
 				if (redial)
 					buf += ' redial';
 				logappend('INPUT ' + hexByte(reportId) + ': ' + buf);
+			} else {
+				for (let i = 0; i < reportData.byteLength; ++i)
+					buf += ' ' + hexByte(reportData.getUint8(i));
+				logappend('INPUT (RAW) ' +  new Date() + ", " + hexByte(reportId) + ': ' + buf);
 			}
-			for (let i = 0; i < reportData.byteLength; ++i)
-				buf += ' ' + hexByte(reportData.getUint8(i));
-			logappend('INPUT (RAW)' + hexByte(reportId) + ': ' + buf);
 		}
 
 		async function requestDevice() {
